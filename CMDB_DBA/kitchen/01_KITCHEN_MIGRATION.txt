@@ -1,0 +1,47 @@
+=== Preparing new DEV instance for developers
+
+
+a) Create required databases, schemas and users in new DEV
+   file -> \CMDB_DBA\kitchens\02_CREATE_new_objects.sql
+   steps: execute everything
+
+b) Prepare OLD DEV for moving kitchens, save structures (sequences, tables, routines, views and materialized views)
+   file -> \CMDB_DBA\kitchens\03_PREPARE_OLD_DEV.sql
+   steps: execute everything
+
+c) Prepare NEW DEV for moving kitchens - procedure for migration
+   !!! IMPORTANT - Pay attention to step 1) - foreign server must point to OLD DEV
+   file -> \CMDB_DBA\kitchens\04_PREPARE_NEW_DEV.sql
+   steps: after making sure to point to valid OLD DEV, execute everything
+
+d) Kitchen migration
+   file -> \CMDB_DBA\kitchens\05_KITCHEN_MIGRATION.sql
+   steps: execute everything
+   !!! IMPORTANT : MUST SAVE THE LOGS/OUTPUT for a later review
+
+d) Setting up privileges in EMEA_CUST_360 database
+   file -> \CMDB_DBA\kitchens\06_PRIVILEGES.sql
+   steps: execute everything
+
+e) Setting up ETL_CMDB database
+   file -> \CMDB_DBA\kitchens\07_ETL_CMDB.sql
+   steps: execute everything
+
+f) Prepare OLD ETL_CMDB for moving schemas, save structures (sequences, tables, routines, views and materialized views)
+   file -> \CMDB_DBA\kitchens\08_PREPARE_OLD_ETL_CMDB.sql
+   steps: execute everything
+
+g) Prepare NEW ETL_CMDB for moving schemas - procedure for migration
+   !!! IMPORTANT - Pay attention to step 1) - foreign server must point to OLD DEV
+   file -> \CMDB_DBA\kitchens\09_PREPARE_NEW_ETL_CMDB.sql
+   steps: after making sure to point to valid OLD DEV, execute everything
+
+h) ETL_CMDB schema migration (crm, data_in, data_out)
+   file -> \CMDB_DBA\kitchens\10_ETL_CMDB_MIGRATION.sql
+   steps: execute everything
+   !!! IMPORTANT : MUST SAVE THE LOGS/OUTPUT for a later review
+
+i) Setting up UAT_CMDB database
+   file -> \CMDB_DBA\kitchens\11_UAT_CMDB.sql
+   steps: execute everything
+   !!! IMPORTANT - last step - manually copy data for job_schedules (data_in, crm and data_out schemas)

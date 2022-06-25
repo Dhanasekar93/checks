@@ -1,0 +1,44 @@
+=== Adding new kitchen for new developer to the existing kitchen migration procedure
+
+This means creating new schema, user and privileges but it needs to be added to the current
+kitchen migration scripts, so that in the next migration this new kitchen is also migrated
+
+
+a) \CMDB_DBA\kitchens\02_CREATE_new_objects.sql
+    1.5) ==== Create "dev_" schemas and kitchens
+        Add the new lines to the following step and execute new lines only
+
+    1.7) ==== Create users for developers
+        Add the new lines to the following step and execute new lines only
+        !!! make sure to generate new password and put it in keepass
+
+
+b) \CMDB_DBA\kitchens\03_PREPARE_OLD_DEV.sql
+    1) ==== Object definitions
+        Only add new schema name to the queries in the code lines: (DO NOT execute)
+            51
+            84
+            112
+            139
+            164
+
+    2) ==== Grant access to all this to fgn user
+        Only add new schema to the bottom of the list (DO NOT execute)
+
+    3) ==== Get the schema sizes we are about to move
+        Only add new schema name in the code line 214 (DO NOT execute)
+
+c) \CMDB_DBA\kitchens\05_KITCHEN_MIGRATION.sql
+    1) ==== MOVING KITCHENS
+        Only add new line for calling kitchen migration procedure (DO NOT execute)
+
+    2) ==== Check the new sizes
+        Only add new schema name in the code line (DO NOT execute)
+
+d) \CMDB_DBA\kitchens\06_PRIVILEGES.sql
+    Throughout all script - add new lines for new schema/user - based on how its done for other developers
+    !!! ALSO EXECUTE NEW LINES ONLY !!!
+
+e) \CMDB_DBA\kitchens\99_KITCHEN_CLEANUP.sql
+    Throughout all script - add new lines for new schema/user - based on how its done for other developers
+    !!! DO NOT EXECUTE !!!
