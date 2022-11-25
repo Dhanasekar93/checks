@@ -10,9 +10,7 @@ jobs:
   deploy:
     name: Deploy to EC2 on master branch push
     runs-on: ubuntu-latest
-
     steps:
-
       - name: Deploy to Server remote loging
         uses: easingthemes/ssh-deploy@main
         env:
